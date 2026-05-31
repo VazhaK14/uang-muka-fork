@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# Fix MPM conflict at runtime (handles Railway layer caching)
+find /etc/apache2/mods-enabled/ -name 'mpm_*' -delete 2>/dev/null || true
+ln -sf /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/mpm_prefork.load
+ln -sf /etc/apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf
+
 # Railway menyediakan PORT secara otomatis, default 80 jika tidak ada
 PORT=${PORT:-80}
 
