@@ -1,0 +1,10 @@
+# File upload dari user
+uploads/
+
+# Environment variables lokal
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
